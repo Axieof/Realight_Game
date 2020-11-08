@@ -1,74 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[RequireComponent(typeof(CharacterController))]
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
-    public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f;
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
+	// This is a reference to the Rigidbody component called "rb"
+	public Rigidbody rb;
 
-    [HideInInspector]
-    public bool canMove = true;
+	public float forwardForce = 2000f;  // Variable that determines the forward force
+	public float sidewaysForce = 500f;  // Variable that determines the sideways force
 
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
+	// We marked this as "Fixed"Update because we
+	// are using it to mess with physics.
+	void FixedUpdate()
+	{
+		// Add a forward force
+		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-        // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+		if (Input.GetKey("d"))  // If the player is pressing the "d" key
+		{
+			// Add a force to the right
+			rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+		}
 
-    void Update()
-    {
-        // We are grounded, so recalculate move direction based on axes
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
-        // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
-        float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+		if (Input.GetKey("a"))  // If the player is pressing the "a" key
+		{
+			// Add a force to the left
+			rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+		}
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpSpeed;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }
+		if (Input.GetKey("w"))  // If the player is pressing the "w" key
+		{
+			// Add a force to the left
+			rb.AddForce(0, 0, forwardForce * Time.deltaTime,ForceMode.VelocityChange);
+		}
 
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
+		if (Input.GetKey("s"))  // If the player is pressing the "s" key
+		{
+			// Add a force to the left
+			rb.AddForce(0, 0, - forwardForce * Time.deltaTime,ForceMode.VelocityChange);
+		}
 
-        // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        // Player and Camera rotation
-        if (canMove)
-        {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
-    }
+	}
 }
