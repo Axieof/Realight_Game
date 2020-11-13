@@ -7,6 +7,10 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset;
     public GameObject firstPersonCam;
     public GameObject thirdPersonCam;
+    public GameObject CinemachineCam;
+
+    AudioListener firstPersonAudio;
+    AudioListener thirdPersonAudio;
 
     private void Start()
     {
@@ -14,9 +18,16 @@ public class FollowPlayer : MonoBehaviour
         //CameraPos = player.position;
         offset = new Vector3(0, 1, -5);
         transform.position = player.position;
+        firstPersonAudio = firstPersonCam.GetComponent<AudioListener>();
+        thirdPersonAudio = CinemachineCam.GetComponent<AudioListener>();
 
         firstPersonCam.SetActive(true);
+        firstPersonAudio.enabled = true;
+
         thirdPersonCam.SetActive(false);
+        thirdPersonAudio.enabled = false;
+
+        CinemachineCam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,7 +42,12 @@ public class FollowPlayer : MonoBehaviour
             //transform.position = player.position;
             //CameraPos = player.position;
             firstPersonCam.SetActive(true);
+            firstPersonAudio.enabled = true;
+
             thirdPersonCam.SetActive(false);
+            thirdPersonAudio.enabled = false;
+
+            CinemachineCam.SetActive(false);
             Debug.Log("Mouse Up");
 
         }
@@ -41,7 +57,13 @@ public class FollowPlayer : MonoBehaviour
             //transform.position = player.position + offset;
             //CameraPos = player.position + offset;
             firstPersonCam.SetActive(false);
+            firstPersonAudio.enabled = false;
+
             thirdPersonCam.SetActive(true);
+            thirdPersonAudio.enabled = true;
+
+            Debug.Log("Cam Turned on");
+            CinemachineCam.SetActive(true);
             Debug.Log("Mouse Down");
         }
     }

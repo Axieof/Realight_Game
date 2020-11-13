@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform player;
     public GameObject FirstPersonCamera;
     public GameObject ThirdPersonCamera;
+    public GameObject CinemachineCam;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-    private void Start()
+    void Start()
     {
         // Sets camera positions
         //CameraPos = player.position;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         FirstPersonCamera.SetActive(true);
         ThirdPersonCamera.SetActive(false);
+        CinemachineCam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("First Person!");
             FirstPerson();
         }
-        else if (ThirdPersonCamera.activeSelf)
+        else if (CinemachineCam.activeSelf)
         {
             Debug.Log("Third Person!");
             ThirdPerson();
