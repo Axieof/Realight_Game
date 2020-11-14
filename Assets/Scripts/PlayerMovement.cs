@@ -41,33 +41,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FirstPersonCamera.activeSelf)
-        {
-            Debug.Log("First Person!");
-            FirstPerson();
-        }
-        else if (CinemachineCam.activeSelf)
-        {
-            Debug.Log("Third Person!");
-            ThirdPerson();
-        }
-    }
-
-    void FirstPerson()
-    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -77,6 +56,26 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (FirstPersonCamera.activeSelf)
+        {
+            FirstPerson();
+        }
+        else if (CinemachineCam.activeSelf)
+        {
+            ThirdPerson();
+        }
+    }
+
+    void FirstPerson()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
+
     }
 
     void ThirdPerson()
