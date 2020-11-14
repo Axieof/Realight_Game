@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "com.unity.cinemachine": {
+      "version": "2.6.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
     "com.unity.animation.rigging": {
       "version": "0.3.4-preview",
       "depth": 0,
