@@ -5,7 +5,6 @@ public class FollowPlayer : MonoBehaviour
     public Transform player;
     private Vector3 CameraPos;
     public Vector3 offset;
-    public Vector3 counter;
     public GameObject firstPersonCam;
     public GameObject thirdPersonCam;
     public GameObject CinemachineCam;
@@ -34,8 +33,7 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        counter = new Vector3(0, 2, 0);
-        firstPersonCam.transform.position = player.position + counter;
+        firstPersonCam.transform.position = player.position;
         thirdPersonCam.transform.position = player.position + offset;
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
