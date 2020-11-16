@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
-        else if (instance != null)
+        else if (instance != this)
         {
             Debug.Log("Instance already exists, destroying object!");
             Destroy(this);

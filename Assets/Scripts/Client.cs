@@ -21,7 +21,7 @@ public class Client : MonoBehaviour
         {
             instance = this;
         }
-        else if (instance != null)
+        else if (instance != this)
         {
             Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
@@ -84,6 +84,9 @@ public class Client : MonoBehaviour
 
                 byte[] _data = new byte[_byteLength];
                 Array.Copy(receiveBuffer, _data, _byteLength);
+
+                // TODO: handle data
+                stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
             catch 
             {
