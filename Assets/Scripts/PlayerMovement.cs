@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform cinemachineCam;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 0.5f;
 
     Vector3 velocity;
     bool isGrounded;
