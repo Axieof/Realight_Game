@@ -92,7 +92,7 @@ public class animationStateController : MonoBehaviour
         bool jump = Input.GetButtonDown("Jump");
         if (jump && allowInput)
         {
-            animator.SetTrigger("isJumping");
+            //animator.SetTrigger("isJumping");
         }
     }
 

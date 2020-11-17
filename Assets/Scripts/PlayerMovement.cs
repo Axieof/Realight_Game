@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    Animator playeranimator;
 
     void Start()
     {
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         FirstPersonCamera.SetActive(true);
         ThirdPersonCamera.SetActive(false);
         CinemachineCam.SetActive(false);
+
+        playeranimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            playeranimator.SetTrigger("isJumping");
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -93,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+    }
+
+    void OnCollisionEnter()
+    {
+        isGrounded = true;
     }
 
 }
