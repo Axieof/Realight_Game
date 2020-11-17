@@ -3,7 +3,7 @@
 public class PlayerController : MonoBehaviour
 {
 
-	public CharacterController controller;
+	//public CharacterController controller;
 	public float speed = 12f;
 	/*
 	// This is a reference to the Rigidbody component called "rb"
@@ -16,12 +16,14 @@ public class PlayerController : MonoBehaviour
 	// are using it to mess with physics.
 	void FixedUpdate()
 	{
+		SendInputToServer();
+
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
 		Vector3 move = transform.right * x + transform.forward * z;
 
-		controller.Move(move * speed * Time.deltaTime);
+		//controller.Move(move * speed * Time.deltaTime);
 		/*
 		// Add a forward force
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
@@ -51,5 +53,18 @@ public class PlayerController : MonoBehaviour
 		}
 		*/
 
+	}
+
+	private void SendInputToServer()
+	{
+		bool[] _inputs = new bool[]
+		{
+			Input.GetKey(KeyCode.W),
+			Input.GetKey(KeyCode.S),
+			Input.GetKey(KeyCode.A),
+			Input.GetKey(KeyCode.D),
+		};
+
+		ClientSend.PlayerMovement(_inputs);
 	}
 }
