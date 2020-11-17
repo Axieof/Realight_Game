@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 	// are using it to mess with physics.
 	void FixedUpdate()
 	{
+		SendInputToServer();
+
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
@@ -51,5 +53,18 @@ public class PlayerController : MonoBehaviour
 		}
 		*/
 
+	}
+
+	private void SendInputToServer()
+	{
+		bool[] _inputs = new bool[]
+		{
+			Input.GetKey(KeyCode.W),
+			Input.GetKey(KeyCode.S),
+			Input.GetKey(KeyCode.A),
+			Input.GetKey(KeyCode.D),
+		};
+
+		ClientSend.PlayerMovement(_inputs);
 	}
 }
