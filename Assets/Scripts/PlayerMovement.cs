@@ -53,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
             playeranimator.SetTrigger("isJumping");
+            Invoke("JumpAction", 0.359f);
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -99,9 +99,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter()
+    public void JumpAction()
     {
-        isGrounded = true;
+        velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
     }
 }
 
