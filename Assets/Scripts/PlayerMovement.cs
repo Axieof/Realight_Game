@@ -99,9 +99,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void OnCollisionEnter()
     {
         isGrounded = true;
     }
 
 }
+=======
+}
+>>>>>>> 4ca1509817a694252000e08754ea4400c053d546
