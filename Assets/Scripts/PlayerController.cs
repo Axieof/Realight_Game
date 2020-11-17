@@ -3,7 +3,7 @@
 public class PlayerController : MonoBehaviour
 {
 
-	public CharacterController controller;
+	//public CharacterController controller;
 	public float speed = 12f;
 	/*
 	// This is a reference to the Rigidbody component called "rb"
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 move = transform.right * x + transform.forward * z;
 
-		controller.Move(move * speed * Time.deltaTime);
+		//controller.Move(move * speed * Time.deltaTime);
 		/*
 		// Add a forward force
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
