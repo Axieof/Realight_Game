@@ -354,6 +354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClientManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3989230851404653108, guid: 55d1b02cd73fb7348ab60d75bc840056, type: 3}
+      propertyPath: ip
+      value: 127.0.0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7691784354550494397, guid: 55d1b02cd73fb7348ab60d75bc840056, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.357068
