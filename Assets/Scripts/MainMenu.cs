@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     private const string GameVersion = "0.1";
     private const int MaxPlayersPerRoom = 2;
+    public Player masterClientPlayer;
+
     public void Quit()
     {
         Debug.Log("Quit");
@@ -26,8 +28,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
-        PhotonNetwork.ConnectUsingSettings();
-
         if (PhotonNetwork.IsConnected)
         {
             Debug.Log("CONNECT - Connected to Photon network");
@@ -52,6 +52,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom("TestRoom", roomOptions);
             Debug.Log("CREATE - Creating a Room");
+            PhotonNetwork.SetMasterClient(masterClientPlayer);
+            //PhotonNetwork.LoadLevel(1);
         }
         else
         {
@@ -83,14 +85,17 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= 1)
+        {
+            PhotonNetwork.LoadLevel("Level");
+        }
         Debug.Log("JOINEDROOM - Client successfully joined a room");
         JoinedPanel.SetActive(true);
-        PhotonNetwork.LoadLevel("Level");
     }
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("PLAYERENTER - Player Joining Room");
+        
     }
 
     public override void OnConnectedToMaster()
