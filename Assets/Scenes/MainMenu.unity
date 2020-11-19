@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef3c7c31861616449dd97f959708e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JoinedPanel: {fileID: 0}
+  JoinedPanel: {fileID: 91773194}
 --- !u!1 &940666274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef3c7c31861616449dd97f959708e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JoinedPanel: {fileID: 0}
+  JoinedPanel: {fileID: 91773194}
 --- !u!1 &1271036327
 GameObject:
   m_ObjectHideFlags: 0
