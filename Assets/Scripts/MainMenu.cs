@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject JoinedPanel = null;
 
     private const string GameVersion = "0.1";
-    private const int MaxPlayersPerRoom = 2;
+    private const int MaxPlayersPerRoom = 3;
     public void Quit()
     {
         Debug.Log("Quit");
@@ -30,11 +30,11 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Connected to Photon network");
+            Debug.Log("CONNECT - Connected to Photon network");
         }
         else
         {
-            Debug.Log("Conencting to Photon Network");
+            Debug.Log("CONNECT - Connecting to Photon Network");
             PhotonNetwork.GameVersion = GameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.CreateRoom("TestRoom", roomOptions);
-            Debug.Log("Creating a Room");
+            Debug.Log("CREATE - Creating a Room");
         }
         else
         {
@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Joining Random Room");
+            Debug.Log("JOIN - Joining Random Room");
             PhotonNetwork.JoinRandomRoom();
         }
         else
@@ -76,32 +76,32 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Joining random room failed, error: " + message);
+        Debug.Log("JOINFAIL - Joining random room failed, error: " + message);
 
         //TODO: Return to main screen
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Client successfully joined a room");
+        Debug.Log("JOINEDROOM - Client successfully joined a room");
         JoinedPanel.SetActive(true);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("Player Joining Room");
+        Debug.Log("PLAYERENTER - Player Joining Room");
         //PhotonNetwork.LoadLevel("PlayerTesting");
 
     }
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connected To Master");
+        Debug.Log("MASTER - Connected To Master");
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         //TODO: Add a disconenct screen to set active
-        Debug.Log($"Disconnected due to: {cause}");
+        Debug.Log($"DISCONNECTED - Disconnected due to: {cause}");
     }
 }
