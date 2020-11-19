@@ -25,4 +25,15 @@ public class RoomsCanvases : MonoBehaviour
             return _currentRoomCanvas;
         }
     }
+
+    private void Awake()
+    {
+        FirstInitialize();
+    }
+
+    private void FirstInitialize()
+    {
+        CreateOrJoinRoomCanvas.FirstInitialize(this);
+        CurrentRoomCanvas.FirstInitialize(this);
+    }
 }

@@ -935,7 +935,7 @@ GameObject:
   - component: {fileID: 511276772}
   - component: {fileID: 511276773}
   m_Layer: 0
-  m_Name: RoomListings
+  m_Name: RoomListingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,6 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2aae910299ab14b9c0fe6fb86c2d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _createRoomMenu: {fileID: 1313308127}
 --- !u!1 &1180342456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,7 +2069,7 @@ GameObject:
   - component: {fileID: 1313308126}
   - component: {fileID: 1313308127}
   m_Layer: 0
-  m_Name: CreateRoom
+  m_Name: CreateRoomMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
