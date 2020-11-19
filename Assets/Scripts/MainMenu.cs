@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount >= 1)
         {
-            PhotonNetwork.LoadLevel("Level");
+            PhotonNetwork.LoadLevel(2);
         }
         Debug.Log("JOINEDROOM - Client successfully joined a room");
         JoinedPanel.SetActive(true);
