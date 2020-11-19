@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject JoinedPanel = null;
 
     private const string GameVersion = "0.1";
-    private const int MaxPlayersPerRoom = 3;
+    private const int MaxPlayersPerRoom = 2;
     public void Quit()
     {
         Debug.Log("Quit");
@@ -85,13 +85,12 @@ public class MainMenu : MonoBehaviourPunCallbacks
     {
         Debug.Log("JOINEDROOM - Client successfully joined a room");
         JoinedPanel.SetActive(true);
+        PhotonNetwork.LoadLevel("Level");
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("PLAYERENTER - Player Joining Room");
-        //PhotonNetwork.LoadLevel("PlayerTesting");
-
     }
 
     public override void OnConnectedToMaster()
