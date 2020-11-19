@@ -6,13 +6,18 @@ using Photon.Pun;
 
 public class PlayerNameInput : MonoBehaviour
 {
-    [SerializeField] private Text nameInputField = null;
+    [SerializeField] private InputField nameInputField = null;
     [SerializeField] private Button CreateButton = null;
     [SerializeField] private Button JoinButton = null;
 
     private const string PlayerPrefsNameKey = "PlayerName";
 
-    private void Start() => SetUpInputField();
+    private void Start()
+    {
+        SetUpInputField();
+        CreateButton.interactable = false;
+        JoinButton.interactable = false;
+    }
 
     private void SetUpInputField()
     {
@@ -27,8 +32,8 @@ public class PlayerNameInput : MonoBehaviour
 
     public void SetPlayerName(string name)
     {
-        CreateButton.interactable = !string.IsNullOrEmpty(name);
-        JoinButton.interactable = !string.IsNullOrEmpty(name);
+        CreateButton.interactable = string.IsNullOrEmpty(name);
+        JoinButton.interactable = string.IsNullOrEmpty(name);
     }
 
     public void SavePlayerName()
