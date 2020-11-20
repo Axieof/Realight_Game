@@ -34,6 +34,8 @@ public class PlayerNameInput : MonoBehaviour
     {
         CreateButton.interactable = string.IsNullOrEmpty(name);
         JoinButton.interactable = string.IsNullOrEmpty(name);
+
+        SavePlayerName();
     }
 
     public void SavePlayerName()
