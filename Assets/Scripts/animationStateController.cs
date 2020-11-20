@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class animationStateController : MonoBehaviour
+public class animationStateController : MonoBehaviourPun
 {
     Animator animator;
     int isWalkingHash;
@@ -30,12 +32,12 @@ public class animationStateController : MonoBehaviour
         bool isWalking = animator.GetBool(isWalkingHash);
 
         bool forwardMove = Input.GetKey("w");
-        if (!isWalking && forwardMove)
+        if (!isWalking && forwardMove && photonView.IsMine)
         {
             //Set IsWalking Parameter in animator to true so movement begins
             animator.SetBool(isWalkingHash, true);
         }
-        if (isWalking && !forwardMove)
+        if (isWalking && !forwardMove && photonView.IsMine)
         {
             //Set IsWalking Parameter in animator to false so movement stops
             animator.SetBool(isWalkingHash, false);
@@ -75,14 +77,14 @@ public class animationStateController : MonoBehaviour
         bool isSeated = animator.GetBool(isSeatedHash);
 
         bool sit = Input.GetKeyDown("c");
-        if (!isSeated && sit)
+        if (!isSeated && sit && photonView.IsMine)
         {
             //Set IsSeated parameter in animator to true so model sits
             animator.SetBool(isSeatedHash, true);
         }
         
         //Code for standing up
-        if (isSeated && sit)
+        if (isSeated && sit && photonView.IsMine)
         {
             //Set IsWalking Parameter in animator to false so model stands
             animator.SetBool(isSeatedHash, false);
