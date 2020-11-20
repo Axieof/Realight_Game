@@ -25,7 +25,7 @@ public class PlayerNameInput : MonoBehaviour
 
         string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
 
-        nameInputField.text = defaultName;
+        //nameInputField.text = defaultName;
 
         SetPlayerName(defaultName);
     }
