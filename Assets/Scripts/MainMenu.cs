@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject JoinedPanel = null;
 
     private const string GameVersion = "0.1";
-    private const int MaxPlayersPerRoom = 2;
+    private const int MaxPlayersPerRoom = 4;
     public Player masterClientPlayer;
 
     public void Quit()

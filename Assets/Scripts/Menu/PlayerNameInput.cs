@@ -25,7 +25,7 @@ public class PlayerNameInput : MonoBehaviour
 
         string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
 
-        nameInputField.text = defaultName;
+        //nameInputField.text = defaultName;
 
         SetPlayerName(defaultName);
     }
@@ -34,6 +34,8 @@ public class PlayerNameInput : MonoBehaviour
     {
         CreateButton.interactable = string.IsNullOrEmpty(name);
         JoinButton.interactable = string.IsNullOrEmpty(name);
+
+        //SavePlayerName();
     }
 
     public void SavePlayerName()
