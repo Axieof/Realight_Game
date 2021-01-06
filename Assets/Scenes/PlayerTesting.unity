@@ -3898,6 +3898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6375444691496636860, guid: eeb84637636a0f44293fc99afeafa8b7, type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8109162600141657118, guid: eeb84637636a0f44293fc99afeafa8b7, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.000000056663005
