@@ -2746,6 +2746,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!143 &1011497874463303325
 CharacterController:
   m_ObjectHideFlags: 0
