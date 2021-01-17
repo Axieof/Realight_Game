@@ -8,7 +8,10 @@ using Photon.Realtime;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private GameObject MainMenuCanvas = null;
     [SerializeField] private GameObject JoinedPanel = null;
+    [SerializeField] private GameObject JoinedCanvas = null;
+    [SerializeField] private GameObject JoinedCode = null;
 
     private const string GameVersion = "0.1";
     private const int MaxPlayersPerRoom = 4;
@@ -64,6 +67,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void Join()
     {
+        MainMenuCanvas.SetActive(false);
+        JoinedCanvas.SetActive(true);
+
+        /*
         if (PhotonNetwork.IsConnected)
         {
             Debug.Log("JOIN - Joining Random Room");
@@ -74,6 +81,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.GameVersion = GameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
+        */
+    }
+
+    public void JoinCode()
+    {
+        JoinedCanvas.SetActive(false);
+        JoinedCode.SetActive(true);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
