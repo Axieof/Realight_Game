@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject JoinedPanel = null;
     [SerializeField] private GameObject JoinedCanvas = null;
     [SerializeField] private GameObject JoinedCode = null;
+    [SerializeField] private GameObject CreateInterest = null;
 
     private const string GameVersion = "0.1";
     private const int MaxPlayersPerRoom = 4;
@@ -45,24 +46,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void Create()
     {
-        RoomOptions roomOptions = new RoomOptions()
-        {
-            IsOpen = true,
-            MaxPlayers = MaxPlayersPerRoom
-        };
-
-        if (PhotonNetwork.IsConnected)
-        {
-            PhotonNetwork.CreateRoom("TestRoom", roomOptions);
-            Debug.Log("CREATE - Creating a Room");
-            PhotonNetwork.SetMasterClient(masterClientPlayer);
-            //PhotonNetwork.LoadLevel(1);
-        }
-        else
-        {
-            PhotonNetwork.GameVersion = GameVersion;
-            PhotonNetwork.ConnectUsingSettings();
-        }
+        MainMenuCanvas.SetActive(false);
+        CreateInterest.SetActive(true);
     }
 
     public void Join()

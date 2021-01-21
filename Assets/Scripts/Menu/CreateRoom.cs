@@ -3,12 +3,36 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateRoom : MonoBehaviour
 {
     private const string GameVersion = "0.1";
     private const int MaxPlayersPerRoom = 2;
     public Player masterClientPlayer;
+    [SerializeField] private Button CreateButton = null;
+    [SerializeField] private Button PublicButton = null;
+    [SerializeField] private Button PrivateButton = null;
+    [SerializeField] private InputField interestInputField = null;
+
+    public void Start()
+    {
+        PublicButton.interactable = true;
+        PrivateButton.interactable = true;
+    }
+
+    public void Update()
+    {
+        string interest = interestInputField.text;
+        if (string.IsNullOrEmpty(interest))
+        {
+            CreateButton.interactable = false;
+        }
+        else
+        {
+            CreateButton.interactable = true;
+        }
+    }
 
     public void Create()
     {
@@ -30,5 +54,11 @@ public class CreateRoom : MonoBehaviour
             PhotonNetwork.GameVersion = GameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
+    }
+
+    public void interestEntered()
+    {
+        string interest = interestInputField.text;
+        
     }
 }
