@@ -14,6 +14,9 @@ public class CreateRoom : MonoBehaviour
     [SerializeField] private Button PublicButton = null;
     [SerializeField] private Button PrivateButton = null;
     [SerializeField] private InputField interestInputField = null;
+    public string interest;
+    public bool publicIsPressed = false;
+    public bool privateIsPressed = false;
 
     public void Start()
     {
@@ -23,8 +26,8 @@ public class CreateRoom : MonoBehaviour
 
     public void Update()
     {
-        string interest = interestInputField.text;
-        if (string.IsNullOrEmpty(interest))
+        interest = interestInputField.text;
+        if (string.IsNullOrEmpty(interest) & publicIsPressed | privateIsPressed)
         {
             CreateButton.interactable = false;
         }
@@ -34,13 +37,38 @@ public class CreateRoom : MonoBehaviour
         }
     }
 
+    public void publicPressed()
+    {
+        publicIsPressed = true;
+        privateIsPressed = false;
+    }
+
+    public void privatePressed()
+    {
+        privateIsPressed = true;
+        publicIsPressed = false;
+    }
+
     public void Create()
     {
         RoomOptions roomOptions = new RoomOptions()
         {
             IsOpen = true,
-            MaxPlayers = MaxPlayersPerRoom
+            MaxPlayers = MaxPlayersPerRoom,
+            CustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
         };
+
+
+        if (publicIsPressed)
+        {
+            roomOptions.CustomRoomProperties.Add("Exclusive", "public");
+        }
+        else if (privateIsPressed)
+        {
+            roomOptions.CustomRoomProperties.Add("Exclusive", "private");
+        }
+
+        roomOptions.CustomRoomProperties.Add("Interest", interest);
 
         if (PhotonNetwork.IsConnected)
         {
