@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreateRoom : MonoBehaviour
+public class CreateRoom : MonoBehaviourPunCallbacks
 {
     private const string GameVersion = "0.1";
     private const int MaxPlayersPerRoom = 2;
@@ -58,7 +58,7 @@ public class CreateRoom : MonoBehaviour
             CustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
         };
 
-
+        /*
         if (publicIsPressed)
         {
             roomOptions.CustomRoomProperties.Add("Exclusive", "public");
@@ -69,13 +69,16 @@ public class CreateRoom : MonoBehaviour
         }
 
         roomOptions.CustomRoomProperties.Add("Interest", interest);
+        */
 
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.CreateRoom("TestRoom", roomOptions);
+            TypedLobby interestLobby = new TypedLobby(interest, LobbyType.Default);
+            PhotonNetwork.CreateRoom("TestRoom", roomOptions, interestLobby);
             Debug.Log("CREATE - Creating a Room");
             PhotonNetwork.SetMasterClient(masterClientPlayer);
             //PhotonNetwork.LoadLevel(1);
+            Debug.LogFormat("Region {0}", PhotonNetwork.NetworkingClient.CloudRegion);
         }
         else
         {

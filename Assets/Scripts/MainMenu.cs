@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         CreateInterest.SetActive(true);
     }
 
-    public void Join()
+    public void JoinSelected()
     {
         MainMenuCanvas.SetActive(false);
         JoinedCanvas.SetActive(true);
