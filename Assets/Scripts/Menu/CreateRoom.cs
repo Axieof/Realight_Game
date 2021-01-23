@@ -54,11 +54,10 @@ public class CreateRoom : MonoBehaviour
         RoomOptions roomOptions = new RoomOptions()
         {
             IsOpen = true,
-            MaxPlayers = MaxPlayersPerRoom,
-            CustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
+            MaxPlayers = MaxPlayersPerRoom //CustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
         };
 
-
+        /*
         if (publicIsPressed)
         {
             roomOptions.CustomRoomProperties.Add("Exclusive", "public");
@@ -67,12 +66,15 @@ public class CreateRoom : MonoBehaviour
         {
             roomOptions.CustomRoomProperties.Add("Exclusive", "private");
         }
+        */
 
-        roomOptions.CustomRoomProperties.Add("Interest", interest);
+        //roomOptions.CustomRoomProperties.Add("Interest", interest);
+
+        TypedLobby interestLobby = new TypedLobby("123", LobbyType.Default);
 
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.CreateRoom("TestRoom", roomOptions);
+            PhotonNetwork.CreateRoom("TestRoom", roomOptions, interestLobby);
             Debug.Log("CREATE - Creating a Room");
             PhotonNetwork.SetMasterClient(masterClientPlayer);
             //PhotonNetwork.LoadLevel(1);
