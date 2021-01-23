@@ -1528,7 +1528,7 @@ namespace Photon.Pun
         /// More about PUN matchmaking:
         /// https://doc.photonengine.com/en-us/pun/v2/lobby-and-matchmaking/matchmaking-and-lobby
         /// </remarks>
-        public static bool JoinRandomRoom(TypedLobby interestLobby)
+        public static bool JoinRandomRoom()
         {
             return JoinRandomRoom(null, 0, MatchmakingMode.FillRoom, null, null);
         }
