@@ -17,7 +17,6 @@ public class CreateRoom : MonoBehaviourPunCallbacks
     public string interest;
     public bool publicIsPressed = false;
     public bool privateIsPressed = false;
-    public System.Random rdm = new System.Random();
 
     public void Start()
     {
@@ -50,15 +49,6 @@ public class CreateRoom : MonoBehaviourPunCallbacks
         publicIsPressed = false;
     }
 
-    public int GenerateRandomCode()
-    {
-        int minimum = 1000;
-        int maximum = 9999;
-
-        int code =  rdm.Next(minimum, maximum);
-        return code;
-    }
-
     public void Create()
     {
         RoomOptions roomOptions = new RoomOptions()
@@ -89,8 +79,6 @@ public class CreateRoom : MonoBehaviourPunCallbacks
             PhotonNetwork.SetMasterClient(masterClientPlayer);
             //PhotonNetwork.LoadLevel(1);
             Debug.LogFormat("Region {0}", PhotonNetwork.NetworkingClient.CloudRegion);
-            int code = GenerateRandomCode();
-            Debug.Log("Code is " + code);
         }
         else
         {
