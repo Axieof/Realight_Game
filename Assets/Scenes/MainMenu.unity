@@ -6685,9 +6685,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1900665450}
-        m_TargetAssemblyTypeName: JoinRoom, Assembly-CSharp
-        m_MethodName: Join
+      - m_Target: {fileID: 1900665447}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: JoinSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7004,7 +7004,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1900665447}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: JoinSelected
+        m_MethodName: Join
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
