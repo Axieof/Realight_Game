@@ -6616,7 +6616,7 @@ GameObject:
   - component: {fileID: 1629914146}
   - component: {fileID: 1629914145}
   m_Layer: 5
-  m_Name: 'Join '
+  m_Name: 'JoinPublic '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
