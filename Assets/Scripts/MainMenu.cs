@@ -18,6 +18,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
     private const int MaxPlayersPerRoom = 4;
     public Player masterClientPlayer;
 
+    public void Start()
+    {
+        Debug.Log("CONNECT(MM) - Connecting to Photon Network");
+        PhotonNetwork.GameVersion = GameVersion;
+        PhotonNetwork.ConnectUsingSettings();
+        Connect();
+    }
     public void Quit()
     {
         Debug.Log("Quit");
@@ -38,7 +45,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log("CONNECT - Connecting to Photon Network");
+            Debug.Log("CONNECT(MMRT) - Connecting to Photon Network");
             PhotonNetwork.GameVersion = GameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
