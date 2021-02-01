@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    //public GameObject inventory;
-   // private bool InventoryEnabled;
+    public GameObject inventory;
+    private bool InventoryEnabled;
 
     private int allSlots;
     private int enabledSlots;
@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        var Slotholder = GameObject.FindWithTag("Inventory");
+        //var Slotholder = GameObject.FindWithTag("Inventory");
 
         allSlots = 25;
         slot = new GameObject[allSlots];
@@ -30,6 +30,24 @@ public class Inventory : MonoBehaviour
                 slot[i].GetComponent<Slot>().empty = true;
             }
             //check all object and set all slots to empty at start of game
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryEnabled = !InventoryEnabled;
+
+            if (InventoryEnabled == true)
+            {
+                inventory.SetActive(true);
+            }
+
+            else
+            {
+                inventory.SetActive(false);
+            }
         }
     }
 
