@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class Item : MonoBehaviour
     [HideInInspector]
     public GameObject itemManager;
 
+    private Text itemTextDescription;
+
     public bool playerCurrentObject;
 
-    //Get player
-    public GameObject player;
+    //Get player and original object position
+    //public GameObject player;
+    private Vector3 originalPos;
 
     public float ballDistance = 2f;
     //Snowball throwing parameters
@@ -32,25 +36,10 @@ public class Item : MonoBehaviour
     public float basketballUpForce = 5f;
     public float basketballFrontForce = 2f;
 
-    //public void Start()
-    //{
-    //itemManager = GameObject.FindWithTag("ItemManager");
-
-    //if (!playerCurrentObject)
-    //{
-    // Debug.Log("hello");
-    //int allobjects = itemManager.transform.childCount;
-
-    //for (int i = 0; i < allobjects; i++)
-    //{
-    //if (itemManager.transform.GetChild(i).gameObject.GetComponent<Item>().ID == ID)
-    //{
-    //playersobject = itemManager.transform.GetChild(i).gameObject;
-    //Debug.Log("hello");
-    //}
-    //}
-    //}
-    //}
+    public void Start()
+    {
+        originalPos = this.transform.position;
+    }
 
     public void Update()
     {
@@ -80,12 +69,9 @@ public class Item : MonoBehaviour
                     this.GetComponent<Rigidbody>().useGravity = true;
                     this.GetComponent<Rigidbody>().AddForce(0, basketballUpForce, basketballFrontForce);
                     Debug.Log("Kobe");
-
                 }
 
-                //this.transform.position = player.transform.position * ballDistance;
-                //this.GetComponent<Rigidbody>().useGravity = false;
-
+                Invoke("Return", 5);
             }
         }
     }
@@ -102,6 +88,9 @@ public class Item : MonoBehaviour
             if (itemManager.transform.GetChild(i).gameObject.GetComponent<Item>().ID == ID)
             {
                 playersobject = itemManager.transform.GetChild(i).gameObject;
+                //itemTextDescription = GameObject.Find("Description").GetComponent<Text>();
+                //Debug.Log(itemTextDescription);
+                //itemTextDescription.text = playersobject.GetComponent<Item>().Description;
             }
         }
 
@@ -120,5 +109,13 @@ public class Item : MonoBehaviour
             playersobject.GetComponent<Item>().equipped = true;
             Debug.Log("BasketBall equipped");
         }
+    }
+
+    public void Return()
+    {
+        Debug.Log("Returning");
+        this.transform.position = originalPos;
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().useGravity = false;
     }
 }

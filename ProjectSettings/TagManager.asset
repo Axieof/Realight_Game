@@ -9,6 +9,7 @@ TagManager:
   - Items
   - ItemManager
   - Inventory
+  - Description
   layers:
   - Default
   - TransparentFX
