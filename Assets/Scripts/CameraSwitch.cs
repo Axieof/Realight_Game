@@ -19,6 +19,12 @@ public class CameraSwitch : MonoBehaviour
         // Set Camera Position
         cameraPositionChange(PlayerPrefs.GetInt("CameraPosition"));
 
+        firstPersonAudio.enabled = false;
+        thirdPersonAudio.enabled = true;
+
+        firstPerson.SetActive(false);
+        thirdPerson.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -64,6 +70,7 @@ public class CameraSwitch : MonoBehaviour
         //Set camera position 1
         if (camPosition == 0)
         {
+            Debug.Log("Third Person Disabled");
             firstPerson.SetActive(true);
             firstPersonAudio.enabled = true;
 
@@ -74,6 +81,7 @@ public class CameraSwitch : MonoBehaviour
         //Set camera position 2
         if (camPosition == 1)
         {
+            Debug.Log("First Person Disabled");
             thirdPerson.SetActive(true);
             thirdPersonAudio.enabled = true;
 
