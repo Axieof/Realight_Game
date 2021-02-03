@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class InGameSettings : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
+    [SerializeField] public Text codeText;
+
+    public void Start()
+    {
+        string code = PlayerPrefs.GetString("Code");
+        Debug.LogFormat("Code is: {0}", code);
+        codeText.text = "Code is: 2576";
+    }
 
     // Update is called once per frame
     void Update()

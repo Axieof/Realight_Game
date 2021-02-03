@@ -45,8 +45,9 @@ public class CreateRoom : MonoBehaviourPunCallbacks
         int maximum = 9999;
 
         int code = rdm.Next(minimum, maximum);
-        return code;
-        //return 9999;
+        //return code;
+        PlayerPrefs.SetString("Code", "2576");
+        return 2576;
     }
 
     public void publicPressed()

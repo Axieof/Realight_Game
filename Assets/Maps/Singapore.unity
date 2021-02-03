@@ -3629,7 +3629,7 @@ PrefabInstance:
     - target: {fileID: 5775078462237076058, guid: ff0b4e3716db993419908d7a9219ce02, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 1787324829167298983, guid: db8765591e1bd0d4f90d78ebb5f4291a, type: 3}
+      objectReference: {fileID: 2393410458536456982, guid: 31b19d9c3d96a8f44b36c3c23a36f7a7, type: 3}
     - target: {fileID: 5775078462237076058, guid: ff0b4e3716db993419908d7a9219ce02, type: 3}
       propertyPath: firstPersonCamera
       value: 
