@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
     public GameObject itemManager;
 
     private Text itemTextDescription;
+    private Text itemTextName;
 
     public bool playerCurrentObject;
 
@@ -57,10 +58,10 @@ public class Item : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (this.Type == "ThrowBall")
+                if (this.Type == "DodgeBall")
                 {
                     this.GetComponent<Rigidbody>().useGravity = true;
-                    Debug.Log("Throwing Snowball");
+                    Debug.Log("Throwing Dodgeball");
 
                 }
 
@@ -88,13 +89,16 @@ public class Item : MonoBehaviour
             if (itemManager.transform.GetChild(i).gameObject.GetComponent<Item>().ID == ID)
             {
                 playersobject = itemManager.transform.GetChild(i).gameObject;
-                //itemTextDescription = GameObject.Find("Description").GetComponent<Text>();
-                //Debug.Log(itemTextDescription);
-                //itemTextDescription.text = playersobject.GetComponent<Item>().Description;
+
+                itemTextDescription = GameObject.FindWithTag("Description").GetComponent<Text>();
+                itemTextDescription.text = playersobject.GetComponent<Item>().Description;
+
+                itemTextName = GameObject.FindWithTag("ItemName").GetComponent<Text>();
+                itemTextName.text = playersobject.GetComponent<Item>().Type;
             }
         }
 
-        if (Type == "ThrowBall")
+        if (Type == "DodgeBall")
         {
             playersobject.SetActive(true);
             playersobject.GetComponent<Rigidbody>().useGravity = false;

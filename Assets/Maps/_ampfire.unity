@@ -23735,6 +23735,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2155254384743917131, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
+      propertyPath: Description
+      value: A throwable Dodge Ball. Hit other players with it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155254384743917131, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
+      propertyPath: Type
+      value: DodgeBall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
 --- !u!1001 &999160666
