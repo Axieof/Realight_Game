@@ -8,7 +8,7 @@ public class NetwrokController : MonoBehaviourPunCallbacks
 {
     public Text txtStatus = null;
     public GameObject btnStart = null;
-    public byte MaxPlayers = 4;
+    public byte MaxPlayers = 10;
 
     private void Start()
     {

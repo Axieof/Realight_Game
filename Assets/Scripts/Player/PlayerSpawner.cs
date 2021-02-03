@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab = null;
-    [SerializeField] private CinemachineFreeLook playerCamera = null;
 
     /*
     [SerializeField] private GameObject firstPersonCamera = null;
@@ -20,8 +19,6 @@ public class PlayerSpawner : MonoBehaviour
     private void Start()
     {
         var player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
-        playerCamera.Follow = player.transform;
-        playerCamera.LookAt = player.transform;
         /*
         firstPersonCamera.SetActive(false);
         playerCamera.enabled = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Movement : MonoBehaviourPun
 {
-    [SerializeField] private float movementSpeed = 0f;
+    [SerializeField] private float movementSpeed = 12f;
 
     private CharacterController controller = null;
     private Transform mainCameraTransform = null;
