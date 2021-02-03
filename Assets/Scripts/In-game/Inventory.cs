@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < allSlots; i++)
         {
-            Debug.Log(Slotholder);
+            //Debug.Log(Slotholder);
             slot[i] = Slotholder.transform.GetChild(i).gameObject;
 
             if (slot[i].GetComponent<Slot>().item == null)
@@ -68,6 +68,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < allSlots; i++)
         {
+            //Debug.Log(slot[i].GetComponent<Slot>().empty);
             if (slot[i].GetComponent<Slot>().empty)
             {
                 //ADD ITEM
@@ -84,8 +85,8 @@ public class Inventory : MonoBehaviour
 
                 slot[i].GetComponent<Slot>().UpdateSlot();
                 slot[i].GetComponent<Slot>().empty = false;
+                return;
             }
-            return;
         }
     }
 }
