@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private float movementSpeed = 12f;
+
     public CharacterController controller;
     public Vector3 offset;
     public Transform player;
     public GameObject FirstPersonCamera;
     public GameObject ThirdPersonCamera;
     public GameObject CinemachineCam;
+    private Transform mainCameraTransform = null;
 
     public float speed = 12f;
     public float gravity = -9.81f;
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
-    public Transform groundCheck;
+    //public Transform groundCheck;
     public Transform cinemachineCam;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -29,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        controller = GetComponent<CharacterController>();
+        mainCameraTransform = Camera.main.transform;
         // Sets camera positions
         //CameraPos = player.position;
         offset = new Vector3(0, 1, -5);
@@ -38,36 +44,44 @@ public class PlayerMovement : MonoBehaviour
         ThirdPersonCamera.SetActive(false);
         CinemachineCam.SetActive(false);
 
+        cinemachineCam = CinemachineCam.transform;
+
         playeranimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
+        if (photonView.IsMine)
         {
-            velocity.y = -2f;
-        }
+            isGrounded = true;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            playeranimator.SetTrigger("isJumping");
-            Invoke("JumpAction", 0.359f);
-        }
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -20f;
+            }
 
-        velocity.y += gravity * Time.deltaTime;
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                //playeranimator.SetTrigger("isJumping");
+                Invoke("JumpAction", 0.359f);
+                //Vector3 jumpHeight = new Vector3(0f, 3f, 0f);
+                //controller.Move(jumpHeight);
+                //controller.transform.up * 3f * Time.deltaTime;
+            }
 
-        controller.Move(velocity * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
 
-        if (FirstPersonCamera.activeSelf)
-        {
-            FirstPerson();
-        }
-        else if (CinemachineCam.activeSelf)
-        {
-            ThirdPerson();
+            controller.Move(velocity * Time.deltaTime);
+
+            if (FirstPersonCamera.activeSelf)
+            {
+                FirstPerson();
+            }
+            else if (CinemachineCam.activeSelf)
+            {
+                ThirdPerson();
+            }
         }
     }
 
