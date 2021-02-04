@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviourPunCallbacks
 {
     public int ID;
     public string Description;
@@ -37,13 +38,21 @@ public class Item : MonoBehaviour
     public float basketballUpForce = 5f;
     public float basketballFrontForce = 2f;
 
+    [SerializeField] public GameObject playerCharacter;
+    [SerializeField] public GameObject basketBall;
+    [SerializeField] public GameObject dodgeBall;
+
+
     public void Start()
     {
-        originalPos = this.transform.position;
+        
     }
 
     public void Update()
     {
+        originalPos = playerCharacter.transform.position;
+        originalPos.x += 1f;
+
         if (equipped)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -60,6 +69,7 @@ public class Item : MonoBehaviour
             {
                 if (this.Type == "DodgeBall")
                 {
+                    PhotonNetwork.Instantiate("Snowball_Item", originalPos, Quaternion.identity);
                     this.GetComponent<Rigidbody>().useGravity = true;
                     this.GetComponent<Rigidbody>().AddForce(this.transform.forward * snowballFrontForce);
                     Debug.Log("Throwing Dodgeball");
@@ -68,10 +78,11 @@ public class Item : MonoBehaviour
 
                 else if (this.Type == "BasketBall")
                 {
-                    //this.GetComponent<Rigidbody>().useGravity = true;
+                    GameObject spawnedBasketball = PhotonNetwork.Instantiate("Basketball", originalPos, Quaternion.identity);
+                    spawnedBasketball.GetComponent<Rigidbody>().useGravity = true;
                     //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * basketballFrontForce);
                     Vector3 goUp = new Vector3(0f, 2f, 0f);
-                    this.transform.position += goUp;
+                    spawnedBasketball.transform.position += goUp;
 
                     //this.transform.position = new Vector3(transform.position.x, transform.position.y + basketballUpForce, transform.position.z + basketballFrontForce);
                     //basketballUpForce
@@ -121,10 +132,11 @@ public class Item : MonoBehaviour
         }
     }
 
+    
     public void Return()
     {
         Debug.Log("Returning");
-        this.transform.position = originalPos;
+        this.GetComponent<Item>().transform.position = originalPos;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         this.GetComponent<Rigidbody>().useGravity = false;
     }

@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
     {
         //var Slotholder = GameObject.FindWithTag("Inventory");
 
-        allSlots = 25;
+        allSlots = 12;
         slot = new GameObject[allSlots];
 
         for (int i = 0; i < allSlots; i++)
