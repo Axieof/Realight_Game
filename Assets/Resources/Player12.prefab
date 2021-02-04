@@ -7433,6 +7433,14 @@ PrefabInstance:
       propertyPath: basketBall
       value: 
       objectReference: {fileID: 2320503714485128466}
+    - target: {fileID: 2322597279213129371, guid: f22b068bce57fe44c94a1cd874b9f06f, type: 3}
+      propertyPath: snowballUpForce
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322597279213129371, guid: f22b068bce57fe44c94a1cd874b9f06f, type: 3}
+      propertyPath: snowballFrontForce
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5798507643704155595, guid: f22b068bce57fe44c94a1cd874b9f06f, type: 3}
       propertyPath: m_Name
       value: ItemManager
@@ -7473,6 +7481,10 @@ PrefabInstance:
       propertyPath: dodgeBall
       value: 
       objectReference: {fileID: 7240843991289971635}
+    - target: {fileID: 7238187304807399482, guid: f22b068bce57fe44c94a1cd874b9f06f, type: 3}
+      propertyPath: basketballFrontForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8603467820517344636, guid: f22b068bce57fe44c94a1cd874b9f06f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

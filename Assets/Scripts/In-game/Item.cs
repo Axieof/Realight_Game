@@ -38,21 +38,8 @@ public class Item : MonoBehaviourPunCallbacks
     public float basketballUpForce = 5f;
     public float basketballFrontForce = 2f;
 
-    [SerializeField] public GameObject playerCharacter;
-    [SerializeField] public GameObject basketBall;
-    [SerializeField] public GameObject dodgeBall;
-
-
-    public void Start()
-    {
-        
-    }
-
     public void Update()
     {
-        originalPos = playerCharacter.transform.position;
-        originalPos.x += 1f;
-
         if (equipped)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -67,22 +54,23 @@ public class Item : MonoBehaviourPunCallbacks
 
             if (Input.GetMouseButtonDown(0))
             {
+                originalPos = this.transform.position;
+
                 if (this.Type == "DodgeBall")
                 {
-                    PhotonNetwork.Instantiate("Snowball_Item", originalPos, Quaternion.identity);
                     this.GetComponent<Rigidbody>().useGravity = true;
-                    this.GetComponent<Rigidbody>().AddForce(this.transform.forward * snowballFrontForce);
+                    Vector3 goUp = new Vector3(0f, snowballUpForce, snowballFrontForce);
+                    this.GetComponent<Rigidbody>().AddForce(goUp);
+                    //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * snowballFrontForce);
                     Debug.Log("Throwing Dodgeball");
-
                 }
 
                 else if (this.Type == "BasketBall")
                 {
-                    GameObject spawnedBasketball = PhotonNetwork.Instantiate("Basketball", originalPos, Quaternion.identity);
-                    spawnedBasketball.GetComponent<Rigidbody>().useGravity = true;
-                    //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * basketballFrontForce);
-                    Vector3 goUp = new Vector3(0f, 2f, 0f);
-                    spawnedBasketball.transform.position += goUp;
+                    this.GetComponent<Rigidbody>().useGravity = true;
+                    Vector3 goUp = new Vector3(0f, basketballUpForce, basketballFrontForce);
+                    //this.transform.position += goUp;
+                    this.GetComponent<Rigidbody>().AddForce(goUp);
 
                     //this.transform.position = new Vector3(transform.position.x, transform.position.y + basketballUpForce, transform.position.z + basketballFrontForce);
                     //basketballUpForce
@@ -131,7 +119,6 @@ public class Item : MonoBehaviourPunCallbacks
             Debug.Log("BasketBall equipped");
         }
     }
-
     
     public void Return()
     {
