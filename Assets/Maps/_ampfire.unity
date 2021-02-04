@@ -23687,6 +23687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2155254384743917126, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce82f1d6ea12cc24e81a3637d3ad7345, type: 2}
     - target: {fileID: 2155254384743917128, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
       propertyPath: m_Name
       value: Snowball_Item
@@ -23743,6 +23747,10 @@ PrefabInstance:
       propertyPath: Type
       value: DodgeBall
       objectReference: {fileID: 0}
+    - target: {fileID: 2155254384743917131, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 7173489281619bf4cb682c67b9ea0351, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7051dbad60f04d1439b4a9f78a9c0f71, type: 3}
 --- !u!1001 &999160666
@@ -38152,6 +38160,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1125175308251245219, guid: 6e7d05d54bf9e544da856781344d32b0, type: 3}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 9d6ef8592dd39624e82c3c7714c241b2, type: 3}
+    - target: {fileID: 1125175308251245230, guid: 6e7d05d54bf9e544da856781344d32b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1ec34f8894ff6d4bbba1b468f7fd887, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e7d05d54bf9e544da856781344d32b0, type: 3}
 --- !u!1001 &1404565043

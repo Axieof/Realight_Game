@@ -61,14 +61,20 @@ public class Item : MonoBehaviour
                 if (this.Type == "DodgeBall")
                 {
                     this.GetComponent<Rigidbody>().useGravity = true;
+                    this.GetComponent<Rigidbody>().AddForce(this.transform.forward * snowballFrontForce);
                     Debug.Log("Throwing Dodgeball");
 
                 }
 
                 else if (this.Type == "BasketBall")
                 {
-                    this.GetComponent<Rigidbody>().useGravity = true;
-                    this.GetComponent<Rigidbody>().AddForce(2f, basketballUpForce, 0); // basketballFrontForce);
+                    //this.GetComponent<Rigidbody>().useGravity = true;
+                    //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * basketballFrontForce);
+                    Vector3 goUp = new Vector3(0f, 2f, 0f);
+                    this.transform.position += goUp;
+
+                    //this.transform.position = new Vector3(transform.position.x, transform.position.y + basketballUpForce, transform.position.z + basketballFrontForce);
+                    //basketballUpForce
                     Debug.Log("Kobe");
                 }
 
