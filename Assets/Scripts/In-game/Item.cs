@@ -68,7 +68,7 @@ public class Item : MonoBehaviour
                 else if (this.Type == "BasketBall")
                 {
                     this.GetComponent<Rigidbody>().useGravity = true;
-                    this.GetComponent<Rigidbody>().AddForce(0, basketballUpForce, basketballFrontForce);
+                    this.GetComponent<Rigidbody>().AddForce(2f, basketballUpForce, 0); // basketballFrontForce);
                     Debug.Log("Kobe");
                 }
 
